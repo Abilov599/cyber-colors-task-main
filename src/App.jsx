@@ -4,6 +4,7 @@ import { selectAll, selectItem, unSelectAll } from "./redux/selectedItemsSlice";
 import { SelectedItemsList } from "./components/SelectedItemsList";
 import { Button } from "./components/Button";
 import "./style.css";
+import { ListItem } from "./components/ListItem";
 
 export const App = ({ items = [] }) => {
   const selectedItems = useSelector((state) => state.selectedItemsSlice.items);
@@ -35,7 +36,7 @@ export const App = ({ items = [] }) => {
       </SelectedItemsList>
       <ul className="List">
         {items.map((item) => (
-          <li
+          <ListItem
             onClick={() => {
               dispatch(selectItem({ item: item.name }));
             }}
@@ -45,7 +46,7 @@ export const App = ({ items = [] }) => {
             }`}
           >
             {item.name}
-          </li>
+          </ListItem>
         ))}
       </ul>
     </Fragment>

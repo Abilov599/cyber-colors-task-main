@@ -1,9 +1,5 @@
-const Button = ({ children, onClick, props }) => {
-  return (
-    <button onClick={onClick} {...props}>
-      {children}
-    </button>
-  );
+const Button = ({ children, ...props }) => {
+  return <button {...props}>{children}</button>;
 };
 
 export { Button };
