@@ -14,9 +14,12 @@ const selectedItemsSlice = createSlice({
         ? state.items.push(item)
         : state.items.splice(state.items.indexOf(item), 1);
     },
+    unSelectAll: (state) => {
+      state.items = [];
+    },
   },
 });
 
-export const { selectItem } = selectedItemsSlice.actions;
+export const { selectItem, unSelectAll } = selectedItemsSlice.actions;
 
 export default selectedItemsSlice.reducer;
