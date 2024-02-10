@@ -16,6 +16,10 @@
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
 }
 
+.List__item--selected {
+  border: 5px solid #00d95e;
+}
+
 .List__item--navy {
   background-color: #001f3f;
 }

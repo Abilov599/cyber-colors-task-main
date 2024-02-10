@@ -25,7 +25,9 @@ export const App = ({ items = [] }) => {
               dispatch(selectItem({ item: item.name }));
             }}
             key={item.name}
-            className={`List__item List__item--${item.color}`}
+            className={`List__item List__item--${item.color} ${
+              selectedItems.includes(item.name) ? "List__item--selected" : ""
+            }`}
           >
             {item.name}
           </li>
