@@ -17,9 +17,16 @@ const selectedItemsSlice = createSlice({
     unSelectAll: (state) => {
       state.items = [];
     },
+    selectAll: (state, action) => {
+      console.log("selectAll", action);
+      if (!state.items.includes(action.payload.item)) {
+        state.items.push(action.payload.item);
+      }
+    },
   },
 });
 
-export const { selectItem, unSelectAll } = selectedItemsSlice.actions;
+export const { selectItem, unSelectAll, selectAll } =
+  selectedItemsSlice.actions;
 
 export default selectedItemsSlice.reducer;

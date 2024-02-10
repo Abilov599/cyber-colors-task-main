@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectItem, unSelectAll } from "./redux/selectedItemsSlice";
+import { selectAll, selectItem, unSelectAll } from "./redux/selectedItemsSlice";
 import { SelectedItemsList } from "./components/SelectedItemsList";
 import { Button } from "./components/Button";
 import "./style.css";
@@ -14,7 +14,7 @@ export const App = ({ items = [] }) => {
     <Fragment>
       <Button
         onClick={() => {
-          dispatch(selectItem({ item: items.map((item) => item.name) }));
+          items.map((item) => dispatch(selectAll({ item: item.name })));
         }}
       >
         Select All
@@ -27,7 +27,7 @@ export const App = ({ items = [] }) => {
         Unselect All
       </Button>
       <SelectedItemsList>
-        {selectedItems.map((item) => (
+        {selectedItems?.map((item) => (
           <li key={item} className="SelectedItemsList__item">
             {item}
           </li>
@@ -41,7 +41,7 @@ export const App = ({ items = [] }) => {
             }}
             key={item.name}
             className={`List__item List__item--${item.color} ${
-              selectedItems.includes(item.name) ? "List__item--selected" : ""
+              selectedItems?.includes(item.name) ? "List__item--selected" : ""
             }`}
           >
             {item.name}
