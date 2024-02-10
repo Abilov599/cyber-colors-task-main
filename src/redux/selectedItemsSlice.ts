@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface SelectedItemsState {
+  items: string[];
+}
+
+const initialState: SelectedItemsState = {
   items: [],
 };
 
@@ -8,7 +12,7 @@ const selectedItemsSlice = createSlice({
   name: "selectedItems",
   initialState,
   reducers: {
-    selectItem: (state, action) => {
+    selectItem: (state, action: PayloadAction<{ item: string }>) => {
       const { item } = action.payload;
       !state.items.includes(item)
         ? state.items.push(item)
@@ -17,8 +21,7 @@ const selectedItemsSlice = createSlice({
     unSelectAll: (state) => {
       state.items = [];
     },
-    selectAll: (state, action) => {
-      console.log("selectAll", action);
+    selectAll: (state, action: PayloadAction<{ item: string }>) => {
       if (!state.items.includes(action.payload.item)) {
         state.items.push(action.payload.item);
       }

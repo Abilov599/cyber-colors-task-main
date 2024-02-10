@@ -3,19 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAll, selectItem, unSelectAll } from "./redux/selectedItemsSlice";
 import { SelectedItemsList } from "./components/SelectedItemsList";
 import { Button } from "./components/Button";
-import "./style.css";
 import { ListItem } from "./components/ListItem";
+import "./style.css";
+import { RootState } from "./redux/store";
 
-export const App = ({ items = [] }) => {
-  const selectedItems = useSelector((state) => state.selectedItemsSlice.items);
+interface Item {
+  name: string;
+  color: string;
+}
 
+interface AppProps {
+  items: Item[];
+}
+
+const App: React.FC<AppProps> = ({ items = [] }) => {
+  const selectedItems = useSelector(
+    (state: RootState) => state.selectedItemsSlice.items
+  );
   const dispatch = useDispatch();
 
   return (
     <Fragment>
       <Button
         onClick={() => {
-          items.map((item) => dispatch(selectAll({ item: item.name })));
+          items.forEach((item) => dispatch(selectAll({ item: item.name })));
         }}
       >
         Select All
@@ -52,3 +63,5 @@ export const App = ({ items = [] }) => {
     </Fragment>
   );
 };
+
+export default App;
